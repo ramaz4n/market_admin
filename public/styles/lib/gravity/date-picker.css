@@ -1,0 +1,7 @@
+.g-date-date-picker .g-text-input__control {
+    text-transform: lowercase;
+}
+
+.g-text-input__control::placeholder {
+    text-transform: initial;
+}

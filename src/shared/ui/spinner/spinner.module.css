@@ -1,0 +1,36 @@
+.spinner,
+.spinner:after {
+    box-sizing: border-box;
+}
+
+.spinner {
+    display: inline-block;
+    width: var(--spinner-size);
+    height: var(--spinner-size);
+}
+
+.spinner {
+    @apply text-foreground
+}
+
+.spinner:after {
+    content: " ";
+    display: block;
+    width: calc(var(--spinner-size) * 0.8);
+    height: calc(var(--spinner-size) * 0.8);
+    margin: calc(var(--spinner-size) * 0.1);
+    border-radius: 50%;
+    border: calc(var(--spinner-size) * 0.08) solid currentColor;
+    border-color: currentColor transparent currentColor transparent;
+    animation: spinner 1.2s linear infinite;
+}
+
+@keyframes spinner {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+

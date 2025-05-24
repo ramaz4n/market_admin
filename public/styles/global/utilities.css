@@ -1,0 +1,15 @@
+@tailwind utilities;
+
+@layer utilities {
+    .text-balance {
+        text-wrap: balance;
+    }
+
+    .animated {
+        transition: all 0.3s ease-in-out;
+    }
+
+    .scrollbar-hide::-webkit-scrollbar {
+        @apply hidden
+    }
+}

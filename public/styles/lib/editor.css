@@ -1,0 +1,138 @@
+.tox-notification, .tox-statusbar__help-text {
+    display: none !important;
+}
+
+.tox-promotion {
+    display: none !important;
+}
+
+.tox-pop--left {
+    display: none !important;
+}
+
+.tox-label {
+    white-space: pre-wrap !important;
+}
+
+.tox-menubar {
+    gap: 12px;
+}
+
+.tox-statusbar__text-container {
+    justify-content: space-between !important;
+}
+
+.mce-content-body {
+    font-size: 14px;
+}
+
+
+.tox .tox-edit-area::before {
+    border-width: 0 !important;
+    border-color: transparent !important;
+}
+
+.tox-statusbar {
+    @apply !hidden
+}
+
+/*DARK MODE*/
+
+.tox-tinymce {
+    border-width: 1px !important;
+
+    @apply !border-border dark:!bg-background dark:!text-foreground dark:children:!text-foreground
+}
+
+
+.tox-menubar, .tox-toolbar__primary, .tox-sidebar, .tox-toolbar__overflow, .mce-content-body, .tox-edit-area__iframe, .tox-menu, .tox-dialog, .tox-dialog__header,.tox-dialog__footer {
+    @apply dark:!bg-background
+}
+
+.tox-tinymce, .tox-editor-container, .tox-editor-header {
+    @apply dark:!bg-background
+}
+
+.tox-editor-header {
+    @apply !shadow-none
+}
+
+.tox-menubar {
+    @apply dark:!bg-background dark:button:!bg-default-white-200 button:!text-xs button:cursor-pointer dark:button:text-foreground
+}
+
+.tox-menubar button:hover {
+    @apply dark:!bg-background-generic
+}
+
+.tox-toolbar__primary {
+    @apply dark:!bg-background dark:button:!bg-background-generic button:!text-xs button:cursor-pointer
+}
+
+.tox-toolbar__primary button:hover {
+    @apply dark:!bg-background-generic
+}
+
+.tox-toolbar__group {
+    @apply dark:!bg-background dark:button:!bg-background-generic button:!text-xs button:cursor-pointer
+}
+
+.tox-toolbar__group button:hover {
+    @apply dark:!bg-background-generic
+}
+
+.tox-collection__item--enabled:not(.tox-collection__item--state-disabled) {
+    @apply dark:!bg-background-generic
+}
+
+
+.tox-collection__item {
+    @apply hover:!bg-primary
+}
+
+.tox-collection__item--active {
+    @apply !bg-primary
+}
+
+.tox-tooltip div {
+    @apply dark:!bg-background-generic
+}
+
+body.mce-content-body {
+    @apply dark:!bg-background
+}
+
+.tox-mbtn--active, .tox-tbtn--enabled {
+    @apply !bg-primary !text-background dark:!text-foreground
+}
+
+.tox-tbtn--enabled .tox-tbtn__icon-wrap svg {
+    @apply !fill-background dark:!fill-foreground
+}
+
+.tox-dialog__title {
+    @apply !text-base !font-medium !leading-none !tracking-tight
+}
+
+.tox-dialog-wrap__backdrop {
+    @apply dark:!bg-black/75
+}
+.tox-dialog__footer .tox-button:not(.tox-button--secondary) {
+    @apply dark:!bg-primary
+}
+
+.tox-button--secondary {
+    @apply dark:!bg-transparent dark:hover:!bg-background-generic transition duration-300 !border-transparent
+}
+
+.tox-form__group input {
+    @apply dark:!bg-transparent dark:!border-border
+}
+
+.tox-listboxfield button {
+    @apply dark:!bg-transparent dark:!border-border
+}
+
+.tox .tox-toolbar-overlord {
+   @apply !bg-background-generic
+}

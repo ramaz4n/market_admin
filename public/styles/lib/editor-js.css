@@ -1,0 +1,55 @@
+
+.codex-editor {
+    h1 {
+        display: block;
+        font-size: 2em;
+        font-weight: bold;
+    }
+
+    h2 {
+        display: block;
+        font-size: 1.5em;
+        font-weight: bold;
+    }
+
+    h3 {
+        display: block;
+        font-size: 1.17em;
+        font-weight: bold;
+    }
+
+    h4 {
+        display: block;
+        font-weight: bold;
+    }
+
+    h5 {
+        display: block;
+        font-size: .83em;
+        font-weight: bold;
+    }
+
+    h6 {
+        display: block;
+        font-size: .67em;
+        font-weight: bold;
+    }
+}
+
+
+.ce-block--selected .ce-block__content {
+    background: var(--g-color-base-generic)
+}
+
+.ce-toolbar__plus, .ce-toolbar__settings-btn {
+    color: var(--g-color-foreground-text) !important;
+}
+
+.ce-toolbar__plus:hover {
+    background-color: var(--g-color-base-float) !important;
+}
+
+.ce-toolbar__settings-btn:hover {
+    background-color: var(--g-color-base-float) !important;
+}
+

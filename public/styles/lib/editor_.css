@@ -1,0 +1,65 @@
+.g-root_theme_dark {
+    .tox-tinymce {
+        border-color: var(--_--border-color);
+    }
+
+    .tox-editor-container {
+        background-color: var(--g-color-base-background) !important;
+    }
+
+    .tox-editor-header {
+        background-color: var(--g-color-base-background) !important;
+    }
+
+    .tox-menubar {
+        background-color: var(--g-color-base-background) !important;
+    }
+
+    .tox-menubar button {
+        background-color: var(--g-color-base-generic) !important;
+        background: var(--g-color-base-generic) !important;
+        color: var(--g-color-text-secondary) !important;
+        outline: none !important;
+        box-shadow: none !important;
+        border: none !important;
+    }
+
+    .tox-toolbar__primary button {
+        background-color: var(--g-color-base-generic) !important;
+        background: var(--g-color-base-generic) !important;
+        color: var(--g-color-text-secondary) !important;
+        outline: none !important;
+        box-shadow: none !important;
+        border: none !important;
+    }
+
+    .tox-toolbar__primary button svg {
+        fill: var(--g-color-text-secondary) !important;
+    }
+
+    .tox-toolbar-overlord,.tox-toolbar__primary {
+        background-color: var(--g-color-base-background) !important;
+    }
+
+
+    .tox-form__group input {
+        @apply !bg-transparent !border-border
+    }
+
+    .tox-tooltip div {
+        @apply !bg-background-generic
+    }
+
+
+    .tox-dialog__title {
+        @apply !text-base !font-medium !leading-none !tracking-tight
+    }
+
+    .tox-dialog-wrap__backdrop {
+        @apply !bg-black/75
+    }
+
+    .tox-dialog__footer .tox-button:not(.tox-button--secondary) {
+        @apply !bg-primary
+    }
+}

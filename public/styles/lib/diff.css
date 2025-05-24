@@ -1,0 +1,30 @@
+.diff-root {
+    font-family: Helvetica, Arial, sans-serif;
+    font-size: 14px;
+    word-wrap: break-word;
+    line-height: 1.4;
+}
+
+del.diffmod {
+    background-color: var(--g-color-text-danger);
+    border-radius: 3px;
+    text-decoration: none;
+}
+
+del.diffdel {
+    background-color: var(--g-color-text-danger);
+    border-radius: 3px;
+    text-decoration: none;
+}
+
+ins.diffmod {
+    background-color: rgb(74 222 128 / 0.6);
+    border-radius: 3px;
+    text-decoration: none;
+}
+
+ins.diffins {
+    background-color: rgb(74 222 128 / 0.6);
+    border-radius: 3px;
+    text-decoration: none;
+}

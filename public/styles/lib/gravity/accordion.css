@@ -1,0 +1,41 @@
+.g-accordion {
+    height: fit-content;
+    border-radius: 12px;
+}
+
+.g-accordion-header {
+    padding: 14px;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    user-select: none;
+}
+
+.g-accordion-header-start {
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 1;
+    word-break: break-all;
+}
+
+.g-accordion-header-end {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.g-accordion-header-extra {
+    padding-right: 6px;
+    border-right: 1px solid var(--g-color-border-line);
+    display: flex;
+    align-items: center;
+}
+
+.g-accordion-content {
+    margin: 0 14px;
+    padding: 14px 0;
+    border-top: 1px solid var(--g-color-border-line);
+}
+

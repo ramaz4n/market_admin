@@ -1,0 +1,15 @@
+@import '@gravity-ui/uikit/styles/fonts.css';
+@import '@gravity-ui/uikit/styles/styles.css';
+@import 'react-quill/dist/quill.snow.css';
+
+@import "global/reset.css";
+@import "global/utilities.css";
+
+@import "lib/vars.scss";
+@import "lib/fonts.css";
+@import "lib/editor.css";
+@import "lib/editor-js.css";
+@import "lib/tailwind.css";
+@import "lib/diff.css";
+
+@import "lib/gravity/gravity.css";

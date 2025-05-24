@@ -1,0 +1,18 @@
+.gn-composite-bar_autosizer .gn-composite-bar__root-menu-item:last-child {
+    margin-top: 10px;
+}
+
+.g-user-aside-popup .g-user__description {
+    font-size: 11px;
+}
+
+.g-user-aside-popup .g-user__name {
+    text-align: start;
+}
+
+@media screen and (max-width: 1024px) {
+    .gn-aside-header__aside {
+        max-height: 100dvh!important;
+    }
+}
+

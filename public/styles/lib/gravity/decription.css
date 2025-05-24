@@ -1,0 +1,37 @@
+
+.g-description-item._active {
+    background-color: var(--g-color-base-generic);
+}
+
+.g-description-badge {
+    padding: 4px 8px;
+    border-radius: 6px;
+    transition: background-color 0.2s ease-in;
+    margin-left: -8px;
+}
+
+.g-description-badge:hover {
+    background-color: var(--g-color-base-generic);
+}
+
+.g-description-item-content {
+    width: 100%;
+}
+
+.g-description-item-flexible .g-description-item-content {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+    padding-top: 4px;
+    padding-bottom: 4px;
+}
+
+.g-description-item-flexible.g-description-item-flexbetween .g-description-item-content {
+    justify-content: space-between;
+}
+
+.g-description-item-footer {
+    padding: 4px 8px 8px 8px;
+}
+

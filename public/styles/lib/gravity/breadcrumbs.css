@@ -1,0 +1,11 @@
+.g-breadcrumbs {
+    overflow-x: auto;
+}
+
+.g-breadcrumbs::-webkit-scrollbar {
+    display: none;
+}
+
+.g-breadcrumbs__inner {
+    min-width: max-content;
+}

@@ -1,0 +1,201 @@
+{
+  "root": true,
+  "env": {
+    "browser": true,
+    "es2020": true
+  },
+  "ignorePatterns": ["dist", ".eslintrc.cjs"],
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "ecmaFeatures": {
+      "jsx": true
+    },
+    "ecmaVersion": "latest",
+    "sourceType": "module",
+    "project": ["./tsconfig.json"]
+  },
+  "plugins": [
+    "@typescript-eslint",
+    "react-refresh",
+    "effector",
+    "unused-imports",
+    "dirs",
+    "sort-keys-fix",
+    "typescript-sort-keys",
+    "simple-import-sort",
+    "unicorn",
+    "tailwindcss"
+  ],
+  "extends": [
+    "eslint:recommended",
+    "plugin:react/recommended",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:@tanstack/eslint-plugin-query/recommended",
+    "plugin:effector/recommended",
+    "plugin:effector/scope",
+    "plugin:import/recommended",
+    "plugin:unicorn/recommended",
+    "plugin:jsx-a11y/recommended",
+    "plugin:tailwindcss/recommended"
+  ],
+  "rules": {
+    "react-refresh/only-export-components": [
+      "warn",
+      {
+        "allowConstantExport": true
+      }
+    ],
+    // react
+    "react/react-in-jsx-scope": "off",
+    "react/jsx-sort-props": [
+      "error",
+      {
+        "callbacksLast": true,
+        "ignoreCase": true,
+        "shorthandFirst": true,
+        "reservedFirst": true,
+        "multiline": "last"
+      }
+    ],
+    "react/jsx-curly-brace-presence": ["error", "never"],
+    "react/display-name": "off",
+    "react/jsx-boolean-value": ["error", "never"],
+    "react/jsx-filename-extension": [
+      1,
+      {
+        "extensions": [".tsx", ".jsx"]
+      }
+    ],
+    // eslint
+    "padding-line-between-statements": [
+      "error",
+      {
+        "blankLine": "always",
+        "prev": "*",
+        "next": "return"
+      },
+      {
+        "blankLine": "always",
+        "prev": ["const", "let"],
+        "next": "*"
+      },
+      {
+        "blankLine": "any",
+        "prev": ["const", "let"],
+        "next": ["const", "let"]
+      }
+    ],
+    "tailwindcss/no-custom-classname": "off",
+    "tailwindcss/classnames-order": "off",
+    "arrow-body-style": ["error", "as-needed"],
+    "no-unused-vars": "off",
+    "no-console": "warn",
+    "no-multi-spaces": "error",
+    "no-multiple-empty-lines": [
+      "error",
+      {
+        "max": 1
+      }
+    ],
+    "indent": [
+      "error",
+      2,
+      {
+        "SwitchCase": 1
+      }
+    ],
+    "quotes": ["error", "single"],
+    "semi": ["error", "always"],
+    // import
+    "import/no-unresolved": "off",
+    // sort-keys-fix
+    "sort-keys-fix/sort-keys-fix": "error",
+    // unused-imports
+    "unused-imports/no-unused-imports": "error",
+    // tailwind
+    "tailwindcss/enforces-negative-arbitrary-values": "off",
+    // unicorn
+    "unicorn/filename-case": [
+      "error",
+      {
+        "case": "kebabCase"
+      }
+    ],
+    "unicorn/consistent-function-scoping": "off",
+    "unicorn/prevent-abbreviations": "off",
+    "unicorn/no-null": "off",
+    "unicorn/explicit-length-check": "off",
+    "unicorn/no-array-callback-reference": "off",
+    "unicorn/no-array-reduce": "off",
+    "unicorn/prefer-module": "off",
+    "unicorn/prefer-node-protocol": "off",
+    "unicorn/prefer-string-replace-all": "off",
+    // dirs
+    "dirs/dirnames": [
+      2,
+      {
+        "pattern": "^[a-z-]+$"
+      }
+    ],
+    // typescript
+    "typescript-sort-keys/interface": [
+      "error",
+      "asc",
+      {
+        "caseSensitive": true,
+        "natural": false,
+        "requiredFirst": true
+      }
+    ],
+    "typescript-sort-keys/string-enum": [
+      "error",
+      "asc",
+      {
+        "caseSensitive": true
+      }
+    ],
+    "@typescript-eslint/no-unused-vars": "error",
+    "@typescript-eslint/no-var-requires": "off",
+    // jsx-a11y
+    "jsx-a11y/no-static-element-interactions": "off",
+    "jsx-a11y/no-noninteractive-element-interactions": "off",
+    "jsx-a11y/click-events-have-key-events": "off",
+    "jsx-a11y/anchor-is-valid": [
+      "error",
+      {
+        "components": ["Link"],
+        "specialLink": ["hrefLeft", "hrefRight"],
+        "aspects": ["invalidHref", "preferButton"]
+      }
+    ],
+    // simple-import-sort
+    "simple-import-sort/imports": [
+      "error",
+      {
+        "groups": [
+          ["^(react)(\\/.*|$)", "^(react-dom)(\\/.*|$)"],
+          ["^@?\\w"],
+          [
+            "^(src/pages)(\\/.*|$)",
+            "^(src/layouts)(\\/.*|$)",
+            "^(src/containers)(\\/.*|$)",
+            "^(src/components)(\\/.*|$)",
+            "^(src/ui)(\\/.*|$)"
+          ],
+          [
+            "^(src/api)(\\/.*|$)",
+            "^(src/hooks)(\\/.*|$)",
+            "^(src/store)(\\/.*|$)",
+            "^(src/helpers)(\\/.*|$)",
+            "^(src/types)(\\/.*|$)",
+            "^(src/constants)(\\/.*|$)"
+          ],
+          ["^\\."],
+          ["(jpe?g|png|webp|svg|avif)$"],
+          ["(css)$"]
+        ]
+      }
+    ],
+    "simple-import-sort/exports": "error"
+  }
+}

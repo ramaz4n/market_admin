@@ -1,0 +1,11 @@
+.g-tabs__item.g-tab-error .g-tabs__item-title {
+    @apply text-danger
+}
+
+.g-tabs__item.g-tab-error.g-tabs__item_active .g-tabs__item-title {
+    @apply text-danger border-danger
+}
+
+.g-tabs__item.g-tab-error.g-tabs__item_active {
+    @apply text-danger border-danger
+}

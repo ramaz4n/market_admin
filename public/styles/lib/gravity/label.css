@@ -1,0 +1,15 @@
+.g-label.danger {
+    background-color: var(--g-color-text-danger);
+    color: white;
+}
+
+.g-label.success {
+    background-color: rgb(74 222 128 / 0.6);
+    color: white;
+}
+
+.g-label.amber {
+    background-color: rgb(251 191 36 / 0.6);
+    color: white;
+}
+

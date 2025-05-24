@@ -1,0 +1,19 @@
+.g-modal-size-l .g-modal__content-wrapper {
+    max-width: 628px;
+    width: 100%;
+}
+
+.g-modal-size-m .g-modal__content-wrapper {
+    max-width: 514px;
+    width: 100%;
+}
+
+.g-modal-size-s .g-modal__content-wrapper {
+    max-width: 444px;
+    width: 100%;
+}
+
+.g-modal-size-s .g-modal__content-wrapper {
+    max-width: fit-content;
+    width: 100%;
+}
