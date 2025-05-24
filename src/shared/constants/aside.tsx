@@ -9,7 +9,7 @@ export const baseAsideProps: Partial<ComponentProps<typeof AsideHeader>> = {
   logo: {
     iconSize: 32,
     iconSrc: '/images/logo/logo.svg',
-    text: 'ВТК Промтех',
+    text: 'Market',
     wrapper: (node) => <Link to={LINKS.home}>{node}</Link>,
   },
 };

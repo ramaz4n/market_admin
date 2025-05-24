@@ -4,9 +4,9 @@ export const HomePage = () => (
   <PageLayout
     breadcrumbsProps={{
       enabledStartLink: true,
-      items: [{ href: '', text: 'Добро пожаловать' }],
+      items: [{ href: '', text: 'Добро пожаловать' }]
     }}
   >
-    <h2 className='mb-2 text-4xl text-foreground'>CMS</h2>
+    <h2 className="mb-2 text-4xl text-foreground">CMS</h2>
   </PageLayout>
 );

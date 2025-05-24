@@ -23,7 +23,7 @@ export const AuthLayout = ({ children }: PropsWithChildren) => {
           src='/images/logo/no-fill-logo-accent.svg'
         />
 
-        <p>ВТК Промтех</p>
+        <p>Market</p>
       </span>
 
       <div className='absolute inset-x-0 bottom-2 mt-4 flex-wrap gap-2 flex-center max-lg:bottom-4 lg:max-w-[62vw]'>
