@@ -41,7 +41,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
             let currentValue = event.target.value;
 
             if (mask) {
-              currentValue = maskito.format(currentValue);
+              currentValue = maskito.format(currentValue, mask);
             }
 
             controlChangeValue(currentValue);
@@ -62,6 +62,14 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
             }
 
             delete properties.label;
+
+            if (
+              properties.placeholder &&
+              rules instanceof Vld &&
+              rules.hasRequired()
+            ) {
+              properties.placeholder += '*';
+            }
 
             return properties;
           };

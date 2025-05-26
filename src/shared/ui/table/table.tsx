@@ -6,7 +6,7 @@ import { Icon, Text } from '@gravity-ui/uikit';
 import { useFormContext } from 'react-hook-form';
 import { type NavigateFunction } from 'react-router-dom';
 
-import { useTableHasValues } from '@/shared/hooks/use-table-values.ts';
+import { useTableIsFiltered } from '@/shared/hooks/use-table-values.ts';
 import { $tableApi } from '@/shared/models/table.ts';
 import { TableNames } from '@/shared/types/table.ts';
 import { TooltipButton } from '@/shared/ui/button/button.tsx';
@@ -49,7 +49,7 @@ export interface TableProps<T = TableDataItem> {
   isLoading?: boolean;
   onRowClick?: (item: T, navFunc: NavigateFunction) => void;
   pagination?: {
-    lastPage: number;
+    last_page: number;
   };
   rowCellClassName?: string;
 }
@@ -59,7 +59,7 @@ export const Table = <T extends TableDataItem>(props: TableProps<T>) => {
 
   const pagination = useTablePagination(props);
 
-  const tableStoreHasValues = useTableHasValues(name);
+  const tableStoreHasValues = useTableIsFiltered(name);
 
   const context = useFormContext();
 

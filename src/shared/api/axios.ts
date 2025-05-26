@@ -17,7 +17,7 @@ export enum HttpErrors {
 
 export type ApiOptions = AxiosRequestConfig;
 
-const baseURL = 'http://193.227.240.38' || import.meta.env.VITE_API_URL;
+const baseURL = import.meta.env.VITE_API_URL || 'http://89.111.169.139:8090';
 
 export const apiHelper = {
   checkValidToken: async () => {

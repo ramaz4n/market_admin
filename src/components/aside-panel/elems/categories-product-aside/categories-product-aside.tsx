@@ -1,7 +1,9 @@
 import { Fragment } from 'react';
 
-import { Loader, Text } from '@gravity-ui/uikit';
+import { Plus } from '@gravity-ui/icons';
+import { Icon, Loader, Text } from '@gravity-ui/uikit';
 import { FormProvider, useForm } from 'react-hook-form';
+import { useDebounceValue } from 'usehooks-ts';
 
 import { CategoryProductCard } from '@/components/aside-panel/elems/categories-product-aside/category-product-card.tsx';
 import { CreateProductCategoryModal } from '@/components/modals/create-product-category-modal/create-product-category-modal.tsx';
@@ -9,13 +11,19 @@ import { UpdateProductCategoryModal } from '@/components/modals/update-product-c
 import { useProductCategories } from '@/shared/hooks/api/use-product-categories.ts';
 import { showModalEvent } from '@/shared/models/modal.ts';
 import { Button } from '@/shared/ui/button/button.tsx';
-import { DatePicker } from '@/shared/ui/date-picker/date-picker.tsx';
 import { Input } from '@/shared/ui/input/input.tsx';
 
 export const CategoriesProductAside = () => {
   const methods = useForm();
 
-  const { isLoading, models, isFetching } = useProductCategories();
+  const [debounceNameValue] = useDebounceValue<string>(
+    methods.watch('name'),
+    500,
+  );
+
+  const { isLoading, models, isFetching } = useProductCategories({
+    name: debounceNameValue,
+  });
 
   if (isLoading) {
     return (
@@ -42,15 +50,12 @@ export const CategoriesProductAside = () => {
                 view='normal'
                 onClick={() => showModalEvent('create-product-category')}
               >
+                <Icon data={Plus} />
                 Создать
               </Button>
             </div>
 
-            <div className='grid grid-cols-[1fr_auto] gap-2'>
-              <Input name='name' placeholder='Найти категорию по названию' />
-
-              <DatePicker name='createdAt' placeholder='Найти по дате' />
-            </div>
+            <Input name='name' placeholder='Найти категорию по названию' />
           </div>
 
           <div className='mb-8 flex h-full flex-col gap-1 overflow-y-auto border-b border-border'>
@@ -75,10 +80,6 @@ export const CategoriesProductAside = () => {
                   <Text className='max-w-72 text-start text-secondary-text'>
                     Попробуйте изменить условия или сбросить настройки фильтра.
                   </Text>
-
-                  <Button view='normal' onClick={console.log}>
-                    Сбросить фильтры
-                  </Button>
                 </div>
               </div>
             )}

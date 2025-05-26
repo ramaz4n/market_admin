@@ -72,9 +72,9 @@ export const TableHeader = <T extends TableDataItem>(props: TableProps<T>) => {
                     </div>
                   }
                 >
-                  <button
+                  <div
                     className={cn(
-                      'animated group inline-flex items-center whitespace-nowrap rounded px-1.5 py-1 hover:bg-background-float active:scale-95',
+                      'animated group inline-flex cursor-pointer items-center whitespace-nowrap rounded px-1.5 py-1 hover:bg-background-float active:scale-95',
                       {
                         'bg-background-float button:visible button:opacity-100':
                           Boolean(filterValue),
@@ -83,7 +83,7 @@ export const TableHeader = <T extends TableDataItem>(props: TableProps<T>) => {
                   >
                     {column.title}{' '}
                     <span className='max-w-t-filter truncate'>
-                      {filterValue ? `:${filterValue}` : ''}
+                      {filterValue ? `: ${filterValue}` : ''}
                     </span>
                     {filterValue && (column?.filter?.key || column?.key) ? (
                       <Button
@@ -105,7 +105,7 @@ export const TableHeader = <T extends TableDataItem>(props: TableProps<T>) => {
                         data={BarsDescendingAlignCenter}
                       />
                     )}
-                  </button>
+                  </div>
                 </Popover>
               ) : (
                 <span className='px-1.5 py-1'>{column.title}</span>

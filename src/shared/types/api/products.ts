@@ -1,8 +1,8 @@
 import { CategoryProps } from '@/shared/types/api/categories.ts';
-import { PaginationRequest } from '@/shared/types/globals.ts';
+import { PaginationRequest, ServerFile } from '@/shared/types/globals.ts';
 
 export interface ProductCreateProps
-  extends Omit<Partial<ProductProps>, 'categories' | 'image'> {
+  extends Omit<Partial<ProductProps>, 'categories' | 'images' | 'status'> {
   categories: string[];
   images: File[];
 }
@@ -17,8 +17,9 @@ export interface ProductProps {
   created_at: number;
   description: string;
   features: string;
+  firm: string;
   id: number;
-  image: string;
+  images: ServerFile[];
   name: string;
   price: string;
   status: number;
@@ -26,5 +27,5 @@ export interface ProductProps {
 }
 
 export type ProductRequestProps = PaginationRequest<{
-  id: number;
+  id?: number;
 }>;

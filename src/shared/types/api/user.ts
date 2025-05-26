@@ -3,6 +3,7 @@ import { PaginationRequest } from '@/shared/types/globals.ts';
 export type UserRequestProps = PaginationRequest<{
   email?: string;
   id?: string;
+  role?: number;
   status?: string;
   username?: string;
 }>;
@@ -21,4 +22,5 @@ export interface UserProps {
   phone: string;
   role: string;
   updated_at: string;
+  username: string;
 }

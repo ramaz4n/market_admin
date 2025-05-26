@@ -4,6 +4,7 @@ import { type RegisterOptions } from 'react-hook-form';
 
 import { Slot } from '@/shared/types/globals.ts';
 import { ButtonProps } from '@/shared/ui/button/button.tsx';
+import { Vld } from '@/shared/utils/form-validator.ts';
 
 export interface UploaderProps {
   name: string;
@@ -23,7 +24,7 @@ export interface UploaderProps {
     index: number,
     onFileRemove: (file: File, index: number) => void,
   ) => ReactNode;
-  rules?: RegisterOptions;
+  rules?: RegisterOptions | Vld;
   showUploadList?: boolean;
   sizeOptions?: SizeOptions;
   tooltip?: boolean | TooltipCallback;

@@ -9,7 +9,7 @@ import { dataAttr } from '@/shared/utils/create-data-attr.ts';
 
 export interface PaginationProps
   extends Omit<HTMLAttributes<HTMLDivElement>, 'onChange'> {
-  lastPage: number | undefined;
+  last_page: number | undefined;
   onChange: (page: number) => void;
   page: number;
   countRecord?: number;

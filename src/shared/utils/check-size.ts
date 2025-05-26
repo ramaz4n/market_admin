@@ -1,4 +1,4 @@
-import { SizeOptions } from '../ui/uploader/uploader.tsx';
+import { SizeOptions } from '@/shared/ui/uploader/types.ts';
 
 interface Props {
   files: File[];

@@ -33,13 +33,20 @@ export type ApiResponse<T> = T & {
   errors?: Record<string, string[]>;
 };
 
-export interface PaginationApiResponse<T> {
+export type PaginationApiResponse<T> = {
   data: T;
   pagination: {
     last_page: number;
     per_page: number;
     total: number;
   };
-}
+};
 
 export type ApiValidationError = Record<string, string[]> | string;
+
+export interface ServerFile {
+  created_at: string;
+  id: number;
+  name: string;
+  path: string;
+}

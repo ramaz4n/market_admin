@@ -1,6 +1,7 @@
-import { ComponentProps } from 'react';
+/* eslint-disable react/no-unescaped-entities */
+import { ComponentProps, useEffect, useRef } from 'react';
 
-import { Select as SelectUI } from '@gravity-ui/uikit';
+import { Select as SelectUI, type SelectOption } from '@gravity-ui/uikit';
 import { Controller, type RegisterOptions } from 'react-hook-form';
 
 import { Vld } from '@/shared/utils/form-validator.ts';
@@ -17,62 +18,104 @@ export const Select = ({
   hasClear = true,
   filterable = true,
   name,
+  options = [],
   onChange,
   rules,
   ...props
-}: SelectProps) => (
-  <Controller
-    name={name}
-    rules={rules instanceof Vld ? rules.build() : rules}
-    render={({
-      field: { onChange: controlChangeValue, value = [], ...field },
-      fieldState,
-    }) => {
-      const onValueChange = (values: string[]) => {
-        const currentValue = values;
+}: SelectProps) => {
+  const optionsHistoryRef = useRef<SelectOption[]>(options as SelectOption[]);
 
-        controlChangeValue(currentValue);
-        onChange?.(name, currentValue);
-      };
+  useEffect(() => {
+    if (!props.onFilterChange) return;
 
-      const getFieldProps = () => {
-        let properties: BaseProps = { ...props, ...field };
+    const map: Map<string, SelectOption> = new Map([]);
 
-        if (fieldState.error?.message) {
-          properties = Object.assign(properties, {
-            errorMessage: (
-              <span className='text-xs'>{fieldState.error?.message}</span>
-            ),
-            errorPlacement: 'outside',
-            validationState: 'invalid',
-          });
-        }
+    for (const item of [
+      ...optionsHistoryRef.current,
+      ...options,
+    ] as SelectOption[]) {
+      map.set(item.value, item);
+    }
 
-        delete properties.label;
+    optionsHistoryRef.current = [...map.values()];
+  }, [options, props.onFilterChange]);
 
-        return properties;
-      };
+  return (
+    <Controller
+      name={name}
+      rules={rules instanceof Vld ? rules.build() : rules}
+      render={({
+        field: { onChange: controlChangeValue, value = [], ...field },
+        fieldState,
+      }) => {
+        const onValueChange = (values: string[]) => {
+          const currentValue = values;
 
-      const currentValue = () => {
-        if (!value) return [];
+          controlChangeValue(currentValue);
+          onChange?.(name, currentValue);
+        };
 
-        if (Array.isArray(value)) {
-          return value;
-        }
+        const getFieldProps = () => {
+          let properties: BaseProps = { ...props, ...field };
 
-        return [value];
-      };
+          if (fieldState.error?.message) {
+            properties = Object.assign(properties, {
+              errorMessage: (
+                <span className='text-xs'>{fieldState.error?.message}</span>
+              ),
+              errorPlacement: 'outside',
+              validationState: 'invalid',
+            });
+          }
 
-      return (
-        <SelectUI
-          filterable={filterable}
-          hasClear={hasClear}
-          value={currentValue()}
-          width='max'
-          onUpdate={onValueChange}
-          {...getFieldProps()}
-        />
-      );
-    }}
-  />
-);
+          delete properties.label;
+
+          if (filterable && props?.onFilterChange) {
+            properties.renderSelectedOption = (option: SelectOption) => {
+              const item = optionsHistoryRef.current.find(
+                (el) => el.value === option.value,
+              );
+
+              return <span>{item?.children || option.value}</span>;
+            };
+
+            properties.filterOption = () => true;
+          }
+
+          if (
+            properties.placeholder &&
+            rules instanceof Vld &&
+            rules.hasRequired()
+          ) {
+            properties.placeholder += '*';
+          }
+
+          return properties;
+        };
+
+        const currentValue = () => {
+          if (!value) return [];
+
+          if (Array.isArray(value)) {
+            return value;
+          }
+
+          return [value];
+        };
+
+        return (
+          <SelectUI
+            filterable={filterable}
+            hasClear={hasClear}
+            options={options}
+            renderEmptyOptions={() => <span>Ничего не найдено</span>}
+            value={currentValue()}
+            width='max'
+            onUpdate={onValueChange}
+            {...getFieldProps()}
+          />
+        );
+      }}
+    />
+  );
+};

@@ -6,7 +6,9 @@ import { TableNames } from '../types/table.ts';
 export const useTableValues = <T extends TableStoreValue>(name: TableNames) =>
   useStoreMap($table, (state) => state[name]) as T;
 
-export const useTableHasValues = (name: TableNames) =>
+export const useTableIsFiltered = (name: TableNames) =>
   Boolean(
-    Object.keys(useTableValues(name) || {}).filter((f) => f !== 'page').length,
+    Object.entries(useTableValues(name) || {})
+      .filter(([key]) => key !== 'page')
+      .filter(([, value]) => Boolean(value)).length,
   );

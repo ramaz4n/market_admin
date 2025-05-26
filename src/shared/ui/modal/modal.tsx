@@ -22,12 +22,13 @@ export enum ModalSize {
   l = 'g-modal-size-l',
   m = 'g-modal-size-m',
   s = 'g-modal-size-s',
+  xl = 'g-modal-size-xl',
 }
 
 interface ModalProps extends Omit<ModalPropsUI, 'onClose'> {
   name: ModalName;
   onClose?: (name: ModalName) => void;
-  size?: 's' | 'm' | 'l' | 'fit';
+  size?: 's' | 'm' | 'l' | 'fit' | 'xl';
   title?: ReactNode;
 }
 

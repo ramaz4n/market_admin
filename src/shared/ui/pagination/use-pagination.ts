@@ -11,7 +11,7 @@ const range = (start: number, end: number) => {
 };
 
 export const usePagination = ({
-  lastPage = 0,
+  last_page = 0,
   siblingCount = 1,
   page = 1,
   onChange,
@@ -21,7 +21,7 @@ export const usePagination = ({
   //   useGetParams();
 
   const isFirstPage = page === 1;
-  const isLastPage = page === lastPage;
+  const isLastPage = page === last_page;
 
   const onPrev = () => goToPage(page - 1);
   const onNext = () => goToPage(page + 1);
@@ -37,24 +37,24 @@ export const usePagination = ({
       If the number of pages is less than the page numbers we want to show in our
       paginationComponent, we return the range [1..lastPage]
     */
-    if (lastPage <= 8 || totalPageNumbers >= lastPage) {
-      return range(1, lastPage);
+    if (last_page <= 8 || totalPageNumbers >= last_page) {
+      return range(1, last_page);
     }
 
     /*
     	Calculate left and right sibling index and make sure they are within range 1 and lastPage
     */
     const leftSiblingIndex = Math.max(page - siblingCount, 1);
-    const rightSiblingIndex = Math.min(page + siblingCount, lastPage);
+    const rightSiblingIndex = Math.min(page + siblingCount, last_page);
 
     /*
       We do not show dots just when there is just one page number to be inserted between the extremes of sibling and the page limits i.e 1 and lastPage. Hence, we are using leftSiblingIndex > 2 and rightSiblingIndex < lastPage - 2
     */
     const shouldShowLeftDots = leftSiblingIndex > 2;
-    const shouldShowRightDots = rightSiblingIndex < lastPage - 2;
+    const shouldShowRightDots = rightSiblingIndex < last_page - 2;
 
     const firstPageIndex = 1;
-    const lastPageIndex = lastPage;
+    const lastPageIndex = last_page;
 
     /*
     	Case 2: No left dots to show, but rights dots to be shown
@@ -63,7 +63,7 @@ export const usePagination = ({
       const leftItemCount = 3 + 2 * siblingCount;
       const leftRange = range(1, leftItemCount);
 
-      return [...leftRange, DOTS, lastPage];
+      return [...leftRange, DOTS, last_page];
     }
 
     /*
@@ -71,7 +71,7 @@ export const usePagination = ({
     */
     if (shouldShowLeftDots && !shouldShowRightDots) {
       const rightItemCount = 3 + 2 * siblingCount;
-      const rightRange = range(lastPage - rightItemCount + 1, lastPage);
+      const rightRange = range(last_page - rightItemCount + 1, last_page);
 
       return [firstPageIndex, DOTS, ...rightRange];
     }
@@ -86,7 +86,7 @@ export const usePagination = ({
     }
 
     return [];
-  }, [page, lastPage, siblingCount]);
+  }, [page, last_page, siblingCount]);
 
   return {
     goToPage,

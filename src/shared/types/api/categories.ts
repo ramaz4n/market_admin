@@ -14,4 +14,5 @@ export interface CategoryProps {
 
 export type CategoryRequestProps = PaginationRequest<{
   id?: number;
+  name?: string;
 }>;

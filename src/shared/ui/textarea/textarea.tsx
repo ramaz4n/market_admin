@@ -7,6 +7,7 @@ import {
   useFormContext,
 } from 'react-hook-form';
 
+import { cn } from '@/shared/utils/cn.ts';
 import { Vld } from '@/shared/utils/form-validator.ts';
 import { mergeRefs } from '@/shared/utils/merge-refs.ts';
 
@@ -14,13 +15,22 @@ type BaseProps = Omit<ComponentProps<typeof TextAreaUI>, 'name' | 'onChange'>;
 
 export interface TextAreaProps extends BaseProps {
   name: string;
+  maxLength?: number;
   onChange?: (name: string, value: string) => void;
   rules?: Vld | RegisterOptions;
 }
 
 export const Textarea = forwardRef<HTMLTextAreaElement, TextAreaProps>(
   (
-    { name, rules, minRows = 4, hasClear = true, onChange, ...props },
+    {
+      name,
+      rules,
+      maxLength,
+      minRows = 4,
+      hasClear = true,
+      onChange,
+      ...props
+    },
     forwardedRef,
   ) => {
     const { control } = useFormContext();
@@ -52,6 +62,22 @@ export const Textarea = forwardRef<HTMLTextAreaElement, TextAreaProps>(
                 errorPlacement: 'outside',
                 validationState: 'invalid',
               };
+            }
+
+            if (maxLength && !props.note) {
+              properties.note = `${value?.length}/${maxLength}`;
+            }
+
+            if (maxLength && !props.note && value?.length > maxLength) {
+              properties.className = cn(props?.className, 'note-max-l-fulled');
+            }
+
+            if (
+              properties.placeholder &&
+              rules instanceof Vld &&
+              rules.hasRequired()
+            ) {
+              properties.placeholder += '*';
             }
 
             return properties;

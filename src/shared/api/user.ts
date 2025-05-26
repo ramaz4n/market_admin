@@ -11,14 +11,17 @@ import {
 import { concatUrlSlug } from '@/shared/utils/concat-url-slug.ts';
 
 export const userApi = {
+  delete: (slug?: string): FetchResponse<{ message: string }> =>
+    api({ method: 'DELETE', url: concatUrlSlug('/api/users', slug) }),
+
   list: (params?: UserRequestProps): FetchPaginationResponse<UserProps[]> =>
-    api({ params, url: '/user' }),
+    api({ params, url: '/api/users' }),
 
   profile: (): Promise<UserProfileResponseProps> =>
     api({ url: '/api/user/profile' }),
 
   updateProfile: (
-    data: UserProps,
+    data: { subject: Partial<UserProps> },
     slug?: string,
   ): FetchResponse<{ subject: UserProps }> =>
     api({

@@ -6,7 +6,13 @@ export type ModalName =
   | 'update-product-category'
   | 'update-service-category'
   | 'create-product'
-  | 'update-product';
+  | 'update-product'
+  | 'create-order'
+  | 'create-service'
+  | 'update-service'
+  | 'create-news'
+  | 'update-news'
+  | 'image-preview';
 
 export type ModalStore = Set<ModalName> | null;
 
@@ -22,7 +28,7 @@ export const $modal = createStore<ModalStore>(null)
 
     state.add(name);
 
-    return state;
+    return new Set(state);
   })
   .on(hideModalEvent, (state, name) => {
     if (!state) {
@@ -33,6 +39,6 @@ export const $modal = createStore<ModalStore>(null)
       state.delete(name);
     }
 
-    return state.size === 0 ? null : state;
+    return state.size === 0 ? null : new Set(state);
   })
   .reset(hideAllModalEvent);

@@ -13,15 +13,18 @@ import {
   useProductCategories,
 } from '@/shared/hooks/api/use-product-categories.ts';
 import { $modal, hideModalEvent } from '@/shared/models/modal.ts';
-import { ProductCreateProps } from '@/shared/types/api/products.ts';
+import {
+  ProductCreateProps,
+  ProductUpdateProps,
+} from '@/shared/types/api/products.ts';
 import { QueryKeys } from '@/shared/types/api/query-keys.ts';
 import { TableNames } from '@/shared/types/table.ts';
 import { Button } from '@/shared/ui/button/button.tsx';
+import { Editor } from '@/shared/ui/editor/editor.tsx';
 import { Input } from '@/shared/ui/input/input.tsx';
 import { Modal, ModalFooter } from '@/shared/ui/modal/modal.tsx';
 import { Select } from '@/shared/ui/select/select.tsx';
 import { toaster } from '@/shared/ui/sonner/sonner.tsx';
-import { Textarea } from '@/shared/ui/textarea/textarea.tsx';
 import { vld } from '@/shared/utils/form-validator.ts';
 
 export const UpdateProductModal = () => {
@@ -40,7 +43,8 @@ export const UpdateProductModal = () => {
   const modalStore = useUnit($modal);
 
   const mutation = useMutation({
-    mutationFn: productsApi.update,
+    mutationFn: (variables: Partial<ProductUpdateProps>) =>
+      productsApi.update(variables, productModel?.id?.toString()),
     onSuccess: async () => {
       // return apiErrorParse(
       //   { name: ['this name is has been used'] },
@@ -70,11 +74,13 @@ export const UpdateProductModal = () => {
 
   useEffect(() => {
     if (productModel && modalStore?.has('update-product')) {
-      const { name, description, price, features, categories } = productModel;
+      const { name, description, firm, price, features, categories } =
+        productModel;
 
       methods.setValue('name', name);
       methods.setValue('description', description);
       methods.setValue('price', price);
+      methods.setValue('firm', firm);
       methods.setValue('features', features);
       methods.setValue(
         'categories',
@@ -87,6 +93,7 @@ export const UpdateProductModal = () => {
     <FormProvider {...methods}>
       <Modal
         name='update-product'
+        size='xl'
         title='Редактирование товара'
         onClose={onClose}
       >
@@ -115,19 +122,22 @@ export const UpdateProductModal = () => {
                 rules={vld().required('Категории')}
               />
 
-              <Textarea
-                name='description'
-                placeholder='Описание'
-                rules={vld().required('Описание').minLength(3).maxLength(255)}
+              <Input
+                name='firm'
+                placeholder='Фирма'
+                rules={vld().required('Фирма')}
               />
 
-              <Textarea
+              <Editor
+                name='description'
+                placeholder='Описание'
+                rules={vld().required('Описание').minLength(3)}
+              />
+
+              <Editor
                 name='features'
                 placeholder='Характериситки'
-                rules={vld()
-                  .required('Характериситки')
-                  .minLength(3)
-                  .maxLength(255)}
+                rules={vld().required('Характериситки').minLength(3)}
               />
 
               <ModalFooter>

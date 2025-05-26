@@ -32,14 +32,25 @@ export const ProfilePage = () => {
     async (name: string, value: string | string[]) => {
       if (!model?.id) return;
 
-      const param = {
-        [name as keyof UserProps]: Array.isArray(value) ? value[0] : value,
+      function getValue() {
+        if (name === 'phone' && typeof value === 'string') {
+          return value.replace(/\D/g, '');
+        }
+
+        if (Array.isArray(value)) {
+          return value[0];
+        }
+
+        return value;
+      }
+
+      const values: { subject: Partial<UserProps> } = {
+        subject: {
+          [name as keyof UserProps]: getValue(),
+        },
       };
 
-      await userApi.updateProfile(
-        param as unknown as UserProps,
-        model?.id.toString(),
-      );
+      await userApi.updateProfile(values, model?.id.toString());
     },
     DEBOUNCE_DELAY,
   );

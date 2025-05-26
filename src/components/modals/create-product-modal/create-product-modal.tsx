@@ -14,11 +14,11 @@ import { hideAllModalEvent } from '@/shared/models/modal.ts';
 import { ProductCreateProps } from '@/shared/types/api/products.ts';
 import { TableNames } from '@/shared/types/table.ts';
 import { Button } from '@/shared/ui/button/button.tsx';
+import { Editor } from '@/shared/ui/editor/editor.tsx';
 import { Input } from '@/shared/ui/input/input.tsx';
 import { Modal, ModalFooter } from '@/shared/ui/modal/modal.tsx';
 import { Select } from '@/shared/ui/select/select.tsx';
 import { toaster } from '@/shared/ui/sonner/sonner.tsx';
-import { Textarea } from '@/shared/ui/textarea/textarea.tsx';
 import { Uploader } from '@/shared/ui/uploader/uploader.tsx';
 import { apiErrorParse } from '@/shared/utils/api-error-parse.ts';
 import { formDataParse } from '@/shared/utils/form-data-parse.ts';
@@ -29,6 +29,7 @@ export const CreateProductModal = () => {
     defaultValues: {
       categories: [],
       description: '',
+      firm: '',
       name: '',
       price: '',
     },
@@ -50,7 +51,7 @@ export const CreateProductModal = () => {
   });
 
   const onSubmit = ({ images: files, ...data }: ProductCreateProps) => {
-    mutation.mutate(formDataParse(data, { fileName: 'images', files }));
+    mutation.mutate(formDataParse(data, { files }));
   };
 
   const onClose = () => {
@@ -60,7 +61,12 @@ export const CreateProductModal = () => {
 
   return (
     <FormProvider {...methods}>
-      <Modal name='create-product' title='Создание товара' onClose={onClose}>
+      <Modal
+        name='create-product'
+        size='xl'
+        title='Создание товара'
+        onClose={onClose}
+      >
         <Form className='space-y-3.5' onSubmit={methods.handleSubmit(onSubmit)}>
           {({ isValid }) => (
             <Fragment>
@@ -86,19 +92,22 @@ export const CreateProductModal = () => {
                 rules={vld().required('Категории')}
               />
 
-              <Textarea
-                name='description'
-                placeholder='Описание'
-                rules={vld().required('Описание').minLength(3).maxLength(255)}
+              <Input
+                name='firm'
+                placeholder='Фирма'
+                rules={vld().required('Фирма')}
               />
 
-              <Textarea
+              <Editor
+                name='description'
+                placeholder='Описание'
+                rules={vld().required('Описание').minLength(3)}
+              />
+
+              <Editor
                 name='features'
                 placeholder='Характериситки'
-                rules={vld()
-                  .required('Характериситки')
-                  .minLength(3)
-                  .maxLength(255)}
+                rules={vld().required('Характериситки').minLength(3)}
               />
 
               <Uploader

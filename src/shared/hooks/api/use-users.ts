@@ -1,8 +1,8 @@
-/* eslint-disable @typescript-eslint/ban-ts-comment */
+import { type SelectOption } from '@gravity-ui/uikit';
 import { keepPreviousData, useQuery } from '@tanstack/react-query';
 
 import { userApi } from '@/shared/api/user.ts';
-import { UserRequestProps } from '@/shared/types/api/user.ts';
+import { UserProps, UserRequestProps } from '@/shared/types/api/user.ts';
 import { TableNames } from '@/shared/types/table.ts';
 
 export const useUsers = <T extends UserRequestProps>(params?: T) => {
@@ -14,11 +14,18 @@ export const useUsers = <T extends UserRequestProps>(params?: T) => {
 
   return {
     ...q,
-    // @ts-ignore
-    models: q.data?.data?.models || [],
-    pagination: {
-      // @ts-ignore
-      lastPage: q.data?.data?.lastPage || 1,
-    },
+    models: q.data?.data || [],
+    pagination: q.data?.pagination,
   };
+};
+
+export const formatUsers = (list: UserProps[]): SelectOption[] => {
+  if (!list || !list.length) {
+    return [];
+  }
+
+  return list.map((item) => ({
+    children: `${item.username} (${item.email})`,
+    value: item.id.toString(),
+  }));
 };

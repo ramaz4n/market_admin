@@ -13,7 +13,7 @@ export class Filer extends Object {
   type: string;
   sizeString: string;
   lastModified: number;
-  uid: number;
+  uid: number | string;
   extension: string;
   isImage: boolean;
   isSvg: boolean;
@@ -28,26 +28,12 @@ export class Filer extends Object {
     this.sizeString = formatBytes(file.size);
     this.type = file.type;
     this.lastModified = file.lastModified;
-    this.uid = Number(uuidv4()) || Date.now(); // Если uid не передан, используем текущее время как uid
+    this.uid = uuidv4() || Date.now(); // Если uid не передан, используем текущее время как uid
     this.extension = file.name.split('.').pop() ?? '';
     this.isImage = IMAGE_EXTENSIONS_SET.has(this.extension);
     this.isSvg = SVG_EXTENSIONS_SET.has(this.extension);
     this.url = URL.createObjectURL(file);
   }
-}
-
-export function getSvg(file: File) {
-  const fileReader = new FileReader();
-
-  fileReader.readAsText(file);
-
-  let svg = '';
-
-  fileReader.onloadend = () => {
-    svg = fileReader.result as string;
-  };
-
-  return svg;
 }
 
 export function formatBytes(bytes: number, decimals = 2) {

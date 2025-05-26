@@ -1,7 +1,7 @@
 import { ComponentProps } from 'react';
 
-import { Eye, TrashBin } from '@gravity-ui/icons';
-import { Icon, Label } from '@gravity-ui/uikit';
+import { Eye, Plus, TrashBin } from '@gravity-ui/icons';
+import { ClipboardButton, Icon, Label } from '@gravity-ui/uikit';
 import { useMutation } from '@tanstack/react-query';
 import { FormProvider, useForm } from 'react-hook-form';
 
@@ -32,6 +32,7 @@ type LabelTheme = ComponentProps<typeof Label>['theme'];
 
 export const ProductListPage = () => {
   const methods = useForm();
+
   const tableSore = useTableValues<ProductRequestProps>(TableNames.PRODUCTS);
 
   const { models, isFetching, isLoading, refetch } = useProducts(tableSore);
@@ -50,12 +51,12 @@ export const ProductListPage = () => {
 
   const columns: TableDataColumns<ProductProps> = [
     {
-      filter: {
-        props: {
-          placeholder: 'Фильтруем по id?',
-        },
-        type: 'input',
-      },
+      // filter: {
+      //   props: {
+      //     placeholder: 'Фильтруем по id?',
+      //   },
+      //   type: 'input',
+      // },
       key: 'id',
       title: 'ID',
     },
@@ -68,6 +69,7 @@ export const ProductListPage = () => {
       },
       key: 'name',
       sortKey: 'name',
+      tdProps: { className: 'max-w-80' },
       title: 'Название',
     },
     {
@@ -83,7 +85,17 @@ export const ProductListPage = () => {
     },
     {
       key: 'article',
+      render: ({ article = '' }) => (
+        <ClipboardButton text={article}>{article}</ClipboardButton>
+      ),
+      tdProps: {
+        onClick: (event) => event.stopPropagation(),
+      },
       title: 'Артикул',
+    },
+    {
+      key: 'firm',
+      title: 'Фирма',
     },
     {
       filter: {
@@ -121,7 +133,7 @@ export const ProductListPage = () => {
         },
         type: 'select',
       },
-      key: 'categories',
+      key: 'category',
       render: ({ categories }) =>
         categories?.length ? (
           <div className='flex flex-wrap items-center gap-x-2 gap-y-1'>
@@ -140,14 +152,20 @@ export const ProductListPage = () => {
     {
       key: 'description',
       render: ({ description }) => (
-        <span className='line-clamp-6'>{description}</span>
+        <span
+          className='line-clamp-6 max-w-60'
+          dangerouslySetInnerHTML={{ __html: description }}
+        />
       ),
       title: 'Описание',
     },
     {
       key: 'features',
       render: ({ features }) => (
-        <span className='line-clamp-6'>{features}</span>
+        <span
+          className='line-clamp-6 max-w-60'
+          dangerouslySetInnerHTML={{ __html: features }}
+        />
       ),
       title: 'Характеристики',
     },
@@ -155,11 +173,6 @@ export const ProductListPage = () => {
       key: 'createdAt',
       render: (data) => dater.toString(data?.created_at, Formats.second),
       title: 'Дата создания',
-    },
-    {
-      key: 'updatedAt',
-      render: (data) => dater.toString(data?.updated_at, Formats.second),
-      title: 'Последнее обновление',
     },
     {
       key: 'actions',
@@ -196,6 +209,7 @@ export const ProductListPage = () => {
         }}
         headerEndContent={
           <Button onClick={() => showModalEvent('create-product')}>
+            <Icon data={Plus} />
             Добавить
           </Button>
         }

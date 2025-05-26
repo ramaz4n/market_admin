@@ -79,7 +79,7 @@ export const Uploader = (props: UploaderProps) => {
           onChange?.(name, returnedFiles);
         };
 
-        const onFileRemove = (uid: number, filers: Filer[]) => {
+        const onFileRemove = (uid: number | string, filers: Filer[]) => {
           if (!Array.isArray(value)) return;
 
           const returnedFiles = [];
@@ -168,7 +168,7 @@ export const Uploader = (props: UploaderProps) => {
             )}
 
             {fieldState.error?.message && (
-              <div className='text-sm text-danger'>
+              <div className='text-xs text-danger'>
                 {fieldState.error.message}
               </div>
             )}

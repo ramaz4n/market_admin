@@ -8,6 +8,10 @@ export class Vld {
     this.errors = {};
   }
 
+  hasRequired() {
+    return this.errors.required !== undefined;
+  }
+
   required(name?: string) {
     this.errors.required = name
       ? `Необходимо заполнить "${name}"`
@@ -26,7 +30,7 @@ export class Vld {
   }
 
   min(value: number, errorMessage?: string) {
-    this.errors.max = {
+    this.errors.min = {
       message: errorMessage ?? `Минимальное значение ${value}`,
       value,
     };

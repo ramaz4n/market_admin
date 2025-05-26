@@ -176,7 +176,7 @@ export const useTablePagination = ({ name, pagination }: TableProps) => {
   return useMemo(
     (): PaginationProps => ({
       className: 'ml-auto mt-2',
-      lastPage: pagination?.lastPage,
+      last_page: pagination?.last_page,
       onChange,
       page: currentPage,
     }),

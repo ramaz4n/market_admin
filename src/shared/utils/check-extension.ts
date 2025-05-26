@@ -1,4 +1,4 @@
-import { ExtensionOptions } from '../ui/uploader/uploader.tsx';
+import { ExtensionOptions } from '@/shared/ui/uploader/types.ts';
 
 const extension = (name: string) => name.split('.').pop() ?? '';
 

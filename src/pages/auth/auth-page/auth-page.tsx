@@ -30,6 +30,7 @@ export const AuthPage = () => {
               name='email'
               placeholder='Почта'
               rules={vld().required('Почта').pattern(REGEXP.email)}
+              size='l'
               type='email'
             />
 
@@ -37,6 +38,7 @@ export const AuthPage = () => {
               name='password'
               placeholder='Пароль'
               rules={vld().required('Пароль').minLength(6)}
+              size='l'
               type='password'
             />
 
@@ -44,6 +46,7 @@ export const AuthPage = () => {
               className='w-full'
               disabled={!isValid}
               isLoading={mutation.isPending}
+              size='l'
               type='submit'
               onClick={methods.handleSubmit(onSubmit)}
             >

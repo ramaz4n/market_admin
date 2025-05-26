@@ -5,7 +5,7 @@ interface FormDataParseProps {
 
 export const formDataParse = <T extends object>(
   data: T,
-  { files = [], fileName = 'files' }: FormDataParseProps,
+  { files = [], fileName = 'images[]' }: FormDataParseProps,
 ) => {
   const postData = new FormData();
 
@@ -15,7 +15,7 @@ export const formDataParse = <T extends object>(
 
   if (files?.length) {
     for (const file of files) {
-      postData.append(`${fileName}[]`, file);
+      postData.append(fileName, file);
     }
   }
 
